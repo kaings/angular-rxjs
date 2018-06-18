@@ -1,8 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import 'rxjs/Rx'; // in order for interval to work, this import is necessary. This import is to unlock the operators of Observable
-import {Observable} from 'rxjs/Observable';
-import {Subscription} from 'rxjs/Subscription';
-import {Observer} from 'rxjs/Observer';
+import {Observable, Subscription, Observer, interval} from 'rxjs';
+import {map} from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-home',
@@ -18,12 +17,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     /* Observable Interval */
-    const myNum = Observable.interval(1000)
-      .map(
-        (someNum: number) => {
-          return someNum * 2;
-        }
-      );
+    const myNum = interval(1000)   // for rxjs (non compat), interval is directly imported from rxjs, not a method of observable
+      .pipe(map(
+          (someNum: number) => {
+            return someNum * 2;
+          }
+        ));
 
     this.subscription = myNum.subscribe(
       (num: number) => {
