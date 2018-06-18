@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import 'rxjs/Rx';
+import 'rxjs/Rx'; // in order for interval to work, this import is necessary
 import {Observable} from 'rxjs/Observable';
 import {Subscription} from 'rxjs/Subscription';
 import {Observer} from 'rxjs/Observer';
